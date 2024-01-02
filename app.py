@@ -1,4 +1,5 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -13,18 +14,18 @@ def math_operations():
     num2 = request.json['num2']
 
     if operation == 'add':
-        result = num1 + num2
+        result = int(num1) + int(num2)
     elif operation == 'subtract':
-        result = num1 - num2
+        result = int(num1) - int(num2)
     elif operation == 'multiply':
-        result = num1 * num2
+        result = int(num1) * int(num2)
     elif operation == 'divide':
-        result = num1 / num2
+        result = int(num1) / int(num2)
     else:
         print('Choose Operator')
 
-    return result
+    return jsonify (result)
 
 
-if __name__ = '__main__'
+if __name__ == '__main__':
     app.run(debug=True)
